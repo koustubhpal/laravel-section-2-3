@@ -1,0 +1,154 @@
+ROUTE
+
+
+<h1>laravel TUTO</h1> create in tuto.blade.php
+
+Route::get('/tuto', function () {
+    return view('welcome');
+});
+
+
+<h1><?=$name;?></h1>
+
+Route::get('/', function () {
+
+$name = request('name');
+    return view('name');
+});
+
+
+Route::get('/posts/{post'}', function ($post) {
+
+
+    return $post;
+});
+
+Route::get('/posts/{post'}', function ($post) {
+
+
+    //return $post;
+});
+
+Route::get('/posts/{post'}', 'postcontroller@show')
+
+class postcontroller{
+public function show()
+{
+return 'hello''
+}
+
+}
+
+php artisan make:controller postcontroller.php
+
+-----------------------------------------------------
+
+DATABASE CONNECTION
+
+create database laravel. and go to the table host and create database and table=id/slug/body
+then insert value
+
+then go to the postcontroller.php and write this,
+
+public function show($slug){
+$post = .\DB:: table('posts')-> where('slug',$slug)->first();
+dd($post);
+
+return view('post',['post'=>$post)]};
+
+}
+
+
+php artisan make:model post
+
+
+class post extends model
+{
+}
+
+public function show($slug){
+$post = post:: where ('$slug')->first();
+if(! post){
+abrot(404)
+}
+
+
+
+php artisan make:migration create_posts_table
+
+after go to the database under migration and get create_posts_table file and open
+
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class create_posts_table extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('posts', function (Blueprint $table) {
+            $table->big Increment('id');
+            $table->string('slug');
+	    $table->text('body');
+            $table->timestamps();
+	    $table->timestamps('published_at')->nullable();
+
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('posts');
+    }
+}
+
+
+php artisan migrate
+php artisan make:migrate add-title-to-posts-table
+php artisan migrate:rollback
+php artisan migrate:fresh
+
+
+
+php artisan help make:model0
+php artisan make:model project -mc
+php artisan make:model assignment -mc
+
+then see this under providers folder assignment.php
+
+php artisan tinker
+
+assignment->body='---------';
+assignment->save();
+
+$assignment = app\assignment::where('completed',true->get());
+$assignment->complete;
+
+then go to the assignment.php 
+
+class assignment ectends model{
+
+public function completed(){
+
+$this->completed=true;
+$this->save();
+
+}
+}
+
+
+
+
+
